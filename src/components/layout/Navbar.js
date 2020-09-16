@@ -6,7 +6,7 @@ class Navbar extends Component {
     title: "Github Finder",
     icon: "fab fa-github",
   };
-  static propType = {
+  static propTypes = {
     title: PropTypes.string.isRequired,
     icon: PropTypes.string.isRequired,
   };
