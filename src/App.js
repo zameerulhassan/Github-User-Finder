@@ -12,6 +12,7 @@ class App extends React.Component {
   state = {
     users: [],
     user: {},
+    repos: [],
     isLoading: false,
     alert: null,
   };
@@ -30,6 +31,15 @@ class App extends React.Component {
     );
     this.setState({ isLoading: false, user: res.data });
   };
+
+  //Get Repos
+  getUserRepos = async (userName) => {
+    this.setState({ isLoading: true });
+    const res = await axios.get(
+      `https://api.github.com/users/${userName}/repos?per_page=5&sort=created:asc&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+    );
+    this.setState({ isLoading: false, repos: res.data });
+  };
   clearUsers = () => {
     this.setState({ users: [], isLoading: false });
   };
@@ -40,7 +50,7 @@ class App extends React.Component {
     }, 3000);
   };
   render() {
-    const { isLoading, users, user } = this.state;
+    const { isLoading, users, user, repos } = this.state;
     return (
       <Router>
         <div className="App">
@@ -73,7 +83,9 @@ class App extends React.Component {
                   <User
                     {...props}
                     getUser={this.getUser}
+                    getUserRepos={this.getUserRepos}
                     user={user}
+                    repos={repos}
                     isLoading={isLoading}
                   />
                 )}
