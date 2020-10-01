@@ -3,6 +3,8 @@ import Spinner from "../layout/Spinner";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import Repos from '../repos/Repos'
+import { FaDirections } from 'react-icons/fa'
+import CountUp from 'react-countup'
 export class SingleUser extends Component {
   componentDidMount() {
     this.props.getUser(this.props.match.params.login);
@@ -66,7 +68,7 @@ export class SingleUser extends Component {
               </Fragment>
             )}
             <a href={html_url} className="btn btn-dark my-1" target="_blank">
-              Visit Github Profile
+            Visit Github Profile <FaDirections color='#dc3545' size='1rem' />
             </a>
             <ul>
               <li>
@@ -96,9 +98,9 @@ export class SingleUser extends Component {
           </div>
         </div>
         <div className="card text-center">
-          <div className="badge badge-primary">Followers: {followers}</div>
-          <div className="badge badge-success">Following: {following}</div>
-          <div className="badge badge-light">Public Repos: {public_repos}</div>
+          <div className="badge badge-primary">Followers: <CountUp end={followers}/></div>
+          <div className="badge badge-success">Following: <CountUp end={following}/></div>
+          <div className="badge badge-light">Public Repos: <CountUp end={public_repos}/></div>
           <div className="badge badge-dark">Public Gist: {public_gists}</div>
         </div>
         <Repos repos={repos} />

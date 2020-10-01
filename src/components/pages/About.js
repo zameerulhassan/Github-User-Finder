@@ -7,7 +7,7 @@ export const About = () => {
             <p>App to search Github users</p>
             <p>Version:1.0.0</p>
             <p>Created: 24 September 2020</p>
-            <p>Courtesy: Brad Traversy (UDEMY)</p>
+            <p>Courtesy: Brad Traversy</p>
             <i>nymhsn13@gmail.com</i>
         </Fragment>
     )
